@@ -61,6 +61,30 @@ export default function App() {
         </>
       }
     >
+      {/* Sambutan Kepala Sekolah */}
+      <section className="container-sambutan p-5 mt-6">
+        <div className="bg-white rounded-xl shadow-md p-5 md:p-8 grid md:grid-cols-3 gap-6 items-center">
+          <div className="md:col-span-1 flex justify-center">
+            <img
+              src="https://smkn4tasikmalaya.vercel.app/_nuxt/Kurniawan.B-1z8vsu.png"
+              alt="Kepala Sekolah"
+              className="w-48 h-48 md:w-56 md:h-56 object-cover rounded-full ring-4 ring-blue-100"
+            />
+          </div>
+          <div className="md:col-span-2">
+            <h2 className="text-2xl font-semibold mb-2">Sambutan Kepala Sekolah</h2>
+            <p className="text-gray-600 leading-relaxed">
+              Assalamu'alaikum warahmatullahi wabarakatuh. Selamat datang di website resmi
+              sekolah kami. Kami berkomitmen untuk menghadirkan layanan pendidikan terbaik,
+              membentuk karakter, dan mengembangkan potensi peserta didik melalui berbagai
+              program akademik maupun non-akademik. Semoga informasi di laman ini bermanfaat
+              bagi seluruh warga sekolah dan masyarakat.
+            </p>
+            <p className="mt-3 font-medium">Kurniawan S.Pd, M.Pd</p>
+          </div>
+        </div>
+      </section>
+
       {/* Statistik Atas */}
       <section className="container-statistik mt-5">
         <h1 className="text-2xl font-semibold text-center underline">
