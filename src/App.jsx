@@ -4,15 +4,19 @@ import MainLayouts from "./layouts/MainLayouts";
 export default function App() {
   const DisplayCardBerita = ({ gambar, judul, deskripsi = "Nilai Awal" }) => {
     return (
-      <div className="card bg-base-100 w-96 shadow-sm">
-        <figure>
-          <img src={gambar} alt="Berita 1" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title ">{judul}</h2>
-          <p className="line-clamp-3">{deskripsi}</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Selengkapnya</button>
+      <div className="card bg-base-100 w-full shadow-md hover:shadow-lg transition p-3">
+        <div className="flex gap-3">
+          <img
+            src={gambar}
+            alt={judul}
+            className="w-28 h-20 object-cover rounded-md"
+          />
+          <div className="flex flex-col">
+            <h2 className="font-semibold text-sm line-clamp-2">{judul}</h2>
+            <p className="text-xs text-gray-500 line-clamp-2">{deskripsi}</p>
+            <button className="btn btn-xs btn-primary mt-2 self-start">
+              Selengkapnya
+            </button>
           </div>
         </div>
       </div>
@@ -21,26 +25,29 @@ export default function App() {
 
   function Card({ title, value = 0 }) {
     return (
-      <div className="statistik-siswa shadow-xl p-5">
-        <h1 className="font-bold text-sm">{title}</h1>
-        <h1 className="text-4xl font-bold">{value}</h1>
+      <div className="statistik-siswa bg-white shadow-md p-5 rounded-xl text-center hover:shadow-lg transition">
+        <h1 className="font-medium text-gray-600 text-sm">{title}</h1>
+        <h1 className="text-3xl font-bold text-blue-600">{value}</h1>
       </div>
     );
   }
 
-  const DisplayCardGaleri = () => {
+  const DisplayCardGaleri = ({ gambar, judul = "Foto Kegiatan" }) => {
     return (
-      <div className=" bg-base-100 w-96 shadow-sm">
-        <figure>
-          <img
-            src="https://i.ytimg.com/vi/G31setbrPNU/maxresdefault.jpg"
-            alt="Shoes"
-            className="rounded-xl w-full"
-          />
-        </figure>
+      <div className="relative group overflow-hidden rounded-xl shadow-md hover:shadow-xl transition">
+        <img
+          src={gambar}
+          alt={judul}
+          className="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500"
+        />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <h2 className="text-white font-semibold text-lg">{judul}</h2>
+        </div>
       </div>
     );
   };
+
   return (
     <MainLayouts
       title="Beranda"
@@ -54,68 +61,72 @@ export default function App() {
         </>
       }
     >
-      {/* Berita */}
-      <section className="container-berita p-5 mt-5">
-        <div className="title-berita">
-          <h1 className="text-3xl font-semibold text-center underline">
+      {/* Statistik Atas */}
+      <section className="container-statistik mt-5">
+        <h1 className="text-2xl font-semibold text-center underline">
+          Data Statistik
+        </h1>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 p-5 mt-5">
+          <Card title={"Jumlah Siswa"} value={"1500"} />
+          <Card title={"Jumlah Guru"} value={"150"} />
+          <Card title={"Jumlah Jurusan"} value={"5"} />
+          <Card title={"Jumlah Romble"} value={"9"} />
+        </div>
+      </section>
+
+      {/* Berita & Galeri */}
+      <section className="container-berita p-5 mt-5 grid md:grid-cols-3 gap-8">
+        {/* Berita */}
+        <div className="md:col-span-2">
+          <h1 className="text-2xl font-semibold underline mb-5">
             Berita Dan Informasi Sekolah
           </h1>
-        </div>
-        <div className="content-card-berita justify-center flex mt-10 gap-5">
-          <div className="card-berita-container grid grid-cols-3 gap-5 justify-center">
+          <div className="flex flex-col gap-4">
             <DisplayCardBerita
-              gambar={
-                "https://awsimages.detik.net.id/community/media/visual/2025/08/15/prabowo-salami-jokowi-1755246544663_169.jpeg?w=600&q=90"
-              }
-              judul={"Prabowo Sedang Berusaha Membangun Ekonomi Indonesia"}
-              deskripsi="Joko Widodo, lebih dikenal sebagai Jokowi adalah politikus dan pengusaha Indonesia yang menjabat sebagai Presiden Indonesia ketujuh dari tahun 2014 sampai 2024. Sebelumnya ia adalah anggota Partai Demokrasi Indonesia Perjuangan."
+              gambar="https://awsimages.detik.net.id/community/media/visual/2025/08/15/prabowo-salami-jokowi-1755246544663_169.jpeg?w=600&q=90"
+              judul="Prabowo Sedang Berusaha Membangun Ekonomi Indonesia"
+              deskripsi="Joko Widodo, lebih dikenal sebagai Jokowi adalah politikus dan pengusaha Indonesia..."
             />
             <DisplayCardBerita
-              gambar={"https://i.ytimg.com/vi/G31setbrPNU/maxresdefault.jpg"}
-              judul={"Prabowo Sedang Berusaha Membangun Ekonomi Indonesia"}
-              deskripsi="Joko Widodo, lebih dikenal sebagai Jokowi adalah politikus dan pengusaha Indonesia yang menjabat sebagai Presiden Indonesia ketujuh dari tahun 2014 sampai 2024. Sebelumnya ia adalah anggota Partai Demokrasi Indonesia Perjuangan."
+              gambar="https://i.ytimg.com/vi/G31setbrPNU/maxresdefault.jpg"
+              judul="Prabowo Sedang Berusaha Membangun Ekonomi Indonesia"
+              deskripsi="Joko Widodo, lebih dikenal sebagai Jokowi adalah politikus dan pengusaha Indonesia..."
             />
             <DisplayCardBerita
-              gambar={
-                "https://awsimages.detik.net.id/community/media/visual/2025/08/15/prabowo-salami-jokowi-1755246544663_169.jpeg?w=600&q=90"
-              }
-              judul={"Prabowo Sedang Berusaha Membangun Ekonomi Indonesia"}
-              deskripsi="Joko Widodo, lebih dikenal sebagai Jokowi adalah politikus dan pengusaha Indonesia yang menjabat sebagai Presiden Indonesia ketujuh dari tahun 2014 sampai 2024. Sebelumnya ia adalah anggota Partai Demokrasi Indonesia Perjuangan."
+              gambar="https://awsimages.detik.net.id/community/media/visual/2025/08/15/prabowo-salami-jokowi-1755246544663_169.jpeg?w=600&q=90"
+              judul="Prabowo Sedang Berusaha Membangun Ekonomi Indonesia"
+              deskripsi="Joko Widodo, lebih dikenal sebagai Jokowi adalah politikus dan pengusaha Indonesia..."
             />
           </div>
         </div>
-      </section>
-      {/* Berita */}
-      <section className="container-berita p-5 mt-5">
-        <div className="title-berita">
-          <h1 className="text-3xl font-semibold text-center underline">
-            Galeri Sekolah / Galeri Acara
+
+        {/* Galeri */}
+        <div>
+          <h1 className="text-2xl font-semibold underline mb-5">
+            Galeri Sekolah
           </h1>
-        </div>
-        <div className="content-card-berita items-center flex-col flex mt-10 gap-5">
-          <div className="card-berita-container grid grid-cols-3 gap-5 justify-center">
-            <DisplayCardGaleri />
-            <DisplayCardGaleri />
-            <DisplayCardGaleri />
+          <div className="grid grid-cols-1 gap-5">
+            <DisplayCardGaleri
+              gambar={
+                "https://awsimages.detik.net.id/visual/2025/08/25/penampakan-terkini-demo-depan-dpr-ri-jalan-gatot-subroto-ditutup-1756102479685_169.jpeg?w=650"
+              }
+              judul="Demo DPR"
+            />
+            <DisplayCardGaleri
+              gambar={
+                "https://awsimages.detik.net.id/visual/2025/08/25/penampakan-terkini-demo-depan-dpr-ri-jalan-gatot-subroto-ditutup-1756102479685_169.jpeg?w=650"
+              }
+              judul="Demo DPR"
+            />
+            <DisplayCardGaleri
+              gambar={
+                "https://awsimages.detik.net.id/visual/2025/08/25/penampakan-terkini-demo-depan-dpr-ri-jalan-gatot-subroto-ditutup-1756102479685_169.jpeg?w=650"
+              }
+              judul="Demo DPR"
+            />
           </div>
-          <div className="bottom mt-5">
+          <div className="text-center mt-5">
             <button className="btn btn-primary">Selengkapnya</button>
-          </div>
-        </div>
-      </section>
-      {/* Statistik */}
-      <section className="container-statistik mt-10">
-        <div className="title-statistik">
-          <h1 className="text-3xl font-semibold text-center underline">
-            Data Statistik
-          </h1>
-        </div>
-        <div className="content-statistik w-full  mt-5">
-          <div className="card-statistik-container flex justify-center items-center grid grid-cols-4 gap-5 p-10">
-            <Card title={"Jumlah Siswa"} value={"1500"} />
-            <Card title={"Jumlah Guru"} value={"150"} />
-            <Card title={"Jumlah Jurusan"} value={"5"} />
-            <Card title={"Jumlah Romble"} value={"9"} />
           </div>
         </div>
       </section>
